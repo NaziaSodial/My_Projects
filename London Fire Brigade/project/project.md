@@ -17,12 +17,11 @@ import Tidy exposing (..)
 import VegaLite exposing (..)
 ```
 
-# Data Visualization Project Summary: Spatio-temporal Fire Risk Analysis of London
+# Data Visualization: Spatio-temporal Fire Risk Analysis of London
 
-{(whoami|}Name: Nazia Ferdause Sodial
-Email: nazia.sodial@city.ac.uk {|whoami)}
+#### Nazia Ferdause Sodial
 
-{(questions|}
+**Note: It is best to view this file in Litvis. However, for GitHub the screenshots of the visualisations has been loaded in the file.**
 
 Fire is a very critical risk that poses threat to mankind. It contributes to both human and economic losses. In this project, the fire risk in London city is analyzed. London has a strong historic connection to fire known as The Great Fire of London. It led to the path of overwhelming social and economic disasters. Carrying this history along with a diverse spectrum of architecture and building styles, both old and new, as well as a large social and cultural diversity of residents, London like any other international city experiences several fire incidents (P.G Holborn, 2003). These fire incidents must be analyzed to prevent loss of lives, insurance claims, and national/individual costs. In this project, the below research questions will be explored.
 
@@ -32,11 +31,9 @@ Fire is a very critical risk that poses threat to mankind. It contributes to bot
 
 To answer these questions, the dataset is collected from the London datastore to understand the patterns for the years 2019 and 2020. These questions could have been answered using clustering from the unsupervised learning technique. However, clustering is quite a complex methodology, and data visualization can help analyze the data with much ease. Furthermore, the hypothesis is that the number of fire incidents will increase during lockdown due to increase in indoor and outdoor activities of households.
 
-{|questions)}
-
-{(visualization|}
-
 **Visualisation 1 (Viz-1)**:
+
+![image caption](daily_pattern.jpg)
 
 ```elm {l=hidden}
 gitPath : String
@@ -90,6 +87,9 @@ calendarPlot =
 ```
 
 **Visualisation 2 (Viz-2)**:
+
+![image caption](Fire_like_temporalgraph.jpg)
+
 _Plot (a)_: Temporal pattern of fire incidents in 2019 and 2020
 
 ```elm {v}
@@ -175,6 +175,8 @@ tempfire =
 
 **Visualisation 3 (Viz-3)**: Interactive temporal graph of all the different types of fire
 
+![image caption](InteractiveGraph_of_types_of_fire.jpg)
+
 ```elm {l=hidden highlight=[21-24,26-29]}
 firetypeData =
     dataFromUrl (gitPath ++ "LondonFireBridageDataset.csv") []
@@ -239,6 +241,8 @@ selRadio =
 ```
 
 **Visualisation 4 (Viz-4)**: Grid view of London depicting the Spatio-temporal patterns of 2019 and 2020
+
+![image caption](SpatioTemporal_Gridview_of_London.jpg)
 
 ```elm {l=hidden}
 fireTable : Table
@@ -378,11 +382,7 @@ fireOccurenceMap =
         ]
 ```
 
-{|visualization)}
-
-{(insights|}
-
-#### Data:
+#### DATA:
 
 The [London fire bridage incident record](https://data.london.gov.uk/dataset/london-fire-brigade-incident-records) dataset for 2019 and 2020 was obtained from the London datastore. The csv file had data of different incidents over several years. However, the dataset was further cleansed to filter out the fire incidents of 2019 and 2020. The dataset has 35384 records of fire incidents. The below columns were considered for this project:
 
@@ -402,6 +402,8 @@ For further analysis, the average temperature of London was collected from [Kagg
 This project was structured around Wilkinson's Grammar of Graphics system. The first method of GoG system is to convert the table data into varset. Since the dataset wasn’t tidy, for each visualization design the data was shaped as per the requirement. For Viz-1 and 2(a), the data was scrubbed in an excel sheet. For Viz- 2(b) the daily temperature of London for the year 2019 was merged with the fire incidents data in an excel sheet. The missing values of the average temperature of London were replaced by mean values. This analysis would have benefited if the daily temperatures of 2020 could have been obtained. Unfortunately, the dataset didn't have any values after May 2020. Hence, the daily temperature of the year 2020 was dropped from the excel sheet. For Viz-4, the data was converted to the tidy data format in an excel sheet and then pasted into the litvis document.
 Since Elm-Vega-lite is designed using GoG system, all the visualization designs were designed around this system as well.
 
+#### INSIGHTS:
+
 #### Insight one (Viz - 1 and 3)
 
 To visualize hourly and daily patterns, one of the best approaches is to use a calendar view heatmap. Heatmaps have the advantage of graphically encoding quantitative data with colour utilizing small area marks, making them ideal for delivering high-information-density overviews (Munzner,T.,2015). It displays that fire incidents are minimum from 1 am to 9 am which implies the time of the day when most of the population is asleep. It reduces even more between 4 am to 6 am. This very well explains that fire incidents are caused mainly due to human activities. To support this analysis, it can be observed in the calendar plot as the human activities increase from morning to evening, the fire incidents also increase. The peak in fire incidents occurs from 6 pm to 7 pm. The rise in human activities owing to the end of working hours could be one of the factors. The other contributing factor could be chimney fire. However, from the interactive visualization plot of different types of fire, Viz-3 it can be concluded that chimney fire doesn’t contribute much to daily fire incident patterns.
@@ -418,11 +420,9 @@ Further, the average temperature of each day of 2019 was superimposed on the are
 To analyze the fire risk distribution across London from 2019 to 2020, a Spatio-temporal design was developed. The Viz-4 is a simplified version of the geographic map of London where each borough is represented in the shape of a grid. The temporal aspect was represented by two bars where orange represented 2019 and red represented 2020.
 Surprisingly, the risk distribution seems uniform across London. The City of London borough has the least number of fire incidents in these two years. Whereas, Westminister faced the highest number of fire incidents in 2019. Comparatively, the fire risk distribution in the east of London seems uniform compared to the west, north and south of London. This insight answers the third research question but raises a major concern that despite 2019 facing a high number of fire incidents there doesn't seem to be any change in the pattern in 2020. The results of Viz - 3 further add criticality to this concern as there doesn't seem to be any decrease in the primary fire with time. This is quite alarming as it seems like no measures were taken to mitigate the risks.
 
-{|insights)}
+#### DESIGN JUSTIFICATIONS:
 
-{(designJustification|}
-
-####Colour:
+Colour:
 As mentioned in Rost, L-C. (2018) Your friendly guide to colors in data visualization. Datawrapper blog, colour enables visual designers to tell a story. In this project, colour plays a significant role in connecting “The Great Fire of London” which was one of the darkest times in London to the increase in fire incidents during another darkest time in history which is the covid-19 pandemic.
 **Visualization 1 and 4:** YellowOrangeRed which is a sequential multi hue scheme was used in both calendar plot and temporal-spatial visualization as hue is an identity channel. In agreement with Munzner, T. hue is extremely useful in identifying patterns or clusters for categorical data. This hue was used to replicate the original colour and texture of fire and its intensity. Also, hue is extremely effective for spatial position and makes a fine distinction for the contiguous region (Munzner, T.,2015). This hue was used to resemble the intensity of fire to the severity of the increase in fire incidents. In the calendar plot, maximum fire incidents happen from 6 pm to 7 pm which turned into an almost blackish-red colour due to extremely high value signifying the darkest hour of the day. In the temporal-spatial design (Viz-4), red was chosen for 2020 data and orange for 2019 data because fire occurrences during the pandemic would have had a greater impact than pre-pandemic times because London city was already dealing with the social and economic turmoil caused by covid-19.
 **Visualization 2:** Similarly, the aim of using red colour in the temporal area chart with yellow gradient fill was to display the plot as fire. The area chart with gradient fill was inspired from the gallery of Vega-lite. Again, in this plot as the number of incidents got higher the colour turned red indicating the criticality of the situation.
@@ -430,43 +430,19 @@ As mentioned in Rost, L-C. (2018) Your friendly guide to colors in data visualiz
 
 A colour blind test was performed on this project’s designs using coblis. Although the shades change for red and green weak, the designs aren’t misleading as the hues help identify the temporal patterns and spatial risk distribution.
 
-####Layout:
-
+Layout:
 **Visualization 1:** Even ordinary phrases like time and date can be used to partially identify the temporal scale of interest. Finding or validating periodicity on a pre-set scale or on a scale that is unknown in advance is a common problem in temporal analysis (Munzner, T.,2015). Calendar heatmap proved to be the layout choice for Viz-1 as the data has two categorical attributes - hours and days with one quantitative attribute which is the number of fire incidents as per Munzner,T. a 2D matrix is the best way to identify clusters or patterns. The idea was to create an interactive calendar view heatmap for Viz-1but due to Elm skill limitations a simplified calendar view heatmap was created. This layout correctly depicted a time-series heatmap displaying the cyclic patterns of hourly fire incidents in a week.
 **Visualization 2:** Temperature rise in London city in 2019 is one visual layer and the area chart of the number of fire incidents in London in 2019 is another visual layer. The alignment of the simple constituent drawings is uncomplicated, as proposed by Munzner, because they are all superimposed right on top of each other so that they share the same frame. Hence, to compare the dependency of fire incidents with temperature rise, one of the best design approaches is superposition. Despite temperature and fire incidents having different scales, it was possible to find the relation between these two variables and derive conclusions.
 **Visualization 3:** In Viz-3, temporal juxtaposition helped to keep a fixed baseline to visualize the trends of different types of fire incidents. With the help of interaction, the types of fire could be compared based on the same scale. This made the comparison very easy and it could be easily concluded that fire incidents due to chimneys and late calls are negligible. Also, it was easier to compare the fluctuations of secondary fire with primary fire.
 **Visualization 4:** Location is a very important visual variable and the London fire incident dataset consisted of the location of the fire incidents. To explore the third research question, the exact layout of each borough wasn’t necessary but the spatial proximity is important to imply the association of fire risks across London. So, one of the minimalist approaches to visualize Spatio-temporal design was to use the grid arrangement of London boroughs was designed by [After The Flood](https://aftertheflood.com/projects/future-cities-catapult/) where each borough gets the same amount of space, and the grid alignment makes it easier to compare values across rows and columns. As per the initial sketch (Viz 5), the idea was to visualize London's boroughs as blocks of fire by stacking the area chart of 2020 on the area chart of 2019. However, while developing the design it was observed that this design approach is quite complex, and to answer the third research question the monthly pattern was unnecessary. So, in Viz 4, a simple grid arrangement of London boroughs is layered with bar plots of total fire incidents of 2019 and 2020. This helped to identify clusters of similar attributes. This design also supports the “first law of geography” by Waldo Tobler, “Everything is related to everything else, but near things are more related than distant things”.
 
-####Interaction:
-
+Interaction:
 To answer the research questions, it was important to dig deep into the data and find the hidden patterns. This would result in generating several plots by sub-setting the data with different temporal aspects and boroughs of London. This could be simplified by embracing interaction between the user and graphical representation. As rightly mentioned in Wilkinson's Grammar of Graphics, any activities in visualization would be faced by the user, not the visualization designer. So creating a user-friendly yet effective interaction in the visualization designs is very important. This design choice was inspired by the two processes: (a) making a selection and (b) responding to the selection summarized in the grammar of interaction, Satyanarayan et al (2017).
 **Visualization 1:** By hovering the mouse over the selected parts in Viz-1, interaction assisted in making a selection of the high or low-intensity areas. Simple user interaction was used in these two designs to convey extra information about the selected portion.
 **Visualization 3:** The addition of radio buttons to Viz-3 helped to filter out inconsequential types of fire, allowing to select the critical fire types and then identify the fluctuations in the pattern. This interaction simplified the method of identifying the correlation between the impact of covid-19 lockdown and the secondary fire type.
 **Visualization 4:** In this design, interaction played a very vital role in keeping the design minimal as suggested by Tufte. Simple hovering of the mouse on the grids helps the user identify the boroughs as well as the year of the bars. Due to the addition of interaction no legends of the years or boroughs were required.
 
-{|designJustification)}
-
-{(validation|}
-
-####The design is simple yet it delivered critical results.
-
-Tufte's simple design approach was one of the project's inspirations. This was accomplished through the use of user-interactive design. Despite the fact that just four attributes were analysed - date/time, borough codes, average temperature, and types of fire - the careful selection of design helped answer all three research questions. These design insights are really important and necessary as they can benefit the fire department, the insurance industry, the general public, and fire protection surveyors, among others. As a result, the design choice proved to be the project's greatest strength.
-
-####User interaction could have been improved if Elm coding skill wasn't a limitation.
-
-Initially, the idea was to identify hidden patterns by using a calendar plot displaying the hourly and daily pattern of a week and a Spatio-temporal grid design showing the risk distribution across London from 2019 to 2020. This required building user interactive plots to take a deep dive within the temporal aspect. Sliders or radio buttons would have helped to filter out insignificant fire types and then observe fire incident patterns for specific months or years. This interactive design could have helped select the lockdown period and analyze the pattern more precisely. The image (Viz – 5) below was the initial design sketch that was prepared before executing the design in litvis document. However, due to the inability to implement it in Vega-lite, there could be a possibility of missing out on additional hidden critical and important patterns. This could definitely turn out to be one of the shortcomings of this project.
-**Visualization 5:** ![image caption](DV_Initial_Sketch.jpg)
-
-####This project leaves the scope of future work.
-
-**Scope 1:** Although the visualization design 4 followed a very minimalist approach leaving the users curious to explore it, they could be a possibility of improvising the design. As to some users, it might be confusing due to the presence of several bars depicting the year data. This design could be further improvised to make the grids of the boroughs more distinguishing.
-
-**Scope 2:** The research questions are quite generic and the insights gained from the data visualization could have been strongly supported if there were more quantitative data. For example, the dwelling data of each borough could have helped to understand if the number of fire incidents is high due to the high density of dwellers.
-This could have been achieved by the geographically weighted boxplots as mentioned by Munzner, T in Visualization Analysis and Design. Similarly, if more related quantitative data was obtained then a statistical analysis could have strongly supported this visual analysis. This weakness of the project definitely leaves the scope of future work.
-
-{|validation)}
-
-{(references|}
+#### REFERENCES:
 
 **P.G. Holborna, P.F. Nolana, J. Golt** (2003) [An analysis of fatal unintentional dwelling fires investigated by London Fire Brigade between 1996 and 2000](https://www.sciencedirect.com/science/article/pii/S0379711202000498)
 
@@ -495,5 +471,3 @@ This could have been achieved by the geographically weighted boxplots as mention
 **Vega-Lite Gallery**, Available at, [https://vega.github.io/vega-lite/examples/](https://vega.github.io/vega-lite/examples/)
 
 **Hexadecimal Colors**, Available at, [https://www.w3schools.com/colors/colors_hexadecimal.asp?msclkid=898227dac80d11ecaf509facf0569291](https://www.w3schools.com/colors/colors_hexadecimal.asp?msclkid=898227dac80d11ecaf509facf0569291)
-
-{|references)}
