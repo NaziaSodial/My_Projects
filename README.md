@@ -1,3 +1,3 @@
 # My_Projects
-London Fire Brigade: Data Visualization on London Fire Brigade data using Elm
-Spatiotemporal analysis of flood losses: Visual Analysis on FEMA data using python and tableau
+1. London Fire Brigade: Data Visualization on London Fire Brigade data using Elm
+2. Spatiotemporal analysis of flood losses: Visual Analysis on FEMA data using python and tableau
